@@ -21,10 +21,30 @@ body {
 
 .image-container {
   position: absolute;
-  top: 50%;
+  top: 45%; /* Subido un poco hacia arriba */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+}
+
+.profile-info {
+  position: absolute;
+  top: 60%; /* Ajustado ligeramente para que quede debajo de la imagen */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: black; /* Establecer color negro para el texto */
+  z-index: 2;
+}
+
+.profile-info h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.profile-info p {
+  font-size: 18px;
+  margin: 5px 0;
 }
 
 .profile-img {
