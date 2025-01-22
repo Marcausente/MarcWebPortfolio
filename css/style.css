@@ -3,10 +3,8 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,31 +36,42 @@ body {
 
 .logos-container {
   position: absolute;
-  width: 100px;  /* Ancho del contenedor de los logos */
+  width: 100px;
   height: 100%;
   overflow: hidden;
-  padding: 0 20px; /* Margen en ambos lados */
+  padding: 0 10px;
   display: flex;
-  justify-content: center;  /* Centrado de los logos dentro del contenedor */
+  justify-content: center;
 }
 
 .logos-container.left {
-  left: 5%; /* Separación de la izquierda */
+  left: 3%;
 }
 
 .logos-container.right {
-  right: 5%; /* Separación de la derecha */
+  right: 3%;
 }
 
 .logos {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+  height: 100%;
+  animation: scroll-up 15s linear infinite;
 }
 
 .logos img {
   width: 40px;
   height: 40px;
   filter: grayscale(100%);
+}
+
+/* Animación para mover los iconos de arriba a abajo */
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%); /* Mueve todo el contenedor hacia arriba */
+  }
 }
