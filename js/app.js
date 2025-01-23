@@ -23,3 +23,5 @@ profileImg.addEventListener('mouseleave', (e) => {
   profileImg.style.boxShadow = '0 0 30px rgba(255, 0, 0, 0.5)';
   profileImg.style.transform = 'scale(1)';
 });
+
+
