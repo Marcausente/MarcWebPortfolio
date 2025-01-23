@@ -63,7 +63,7 @@ body {
 
 .image-container {
   position: absolute;
-  top: 45%; /* Subido un poco hacia arriba */
+  top: 40%; /* Subido un poco hacia arriba */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -72,7 +72,7 @@ body {
 .profile-info {
   font-family: 'Menlo', 'Courier New', Courier, monospace;
   position: absolute;
-  top: 60%; /* Ajustado ligeramente para que quede debajo de la imagen */
+  top: 65%; /* Bajado un poco para no solaparse con la imagen */
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -167,10 +167,20 @@ body {
     height: 25px;
   }
 
-  .profile-img {
-    width: 100px; /* Avatar más pequeño */
-    height: 100px;
-  }
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); /* Sombra roja constante */
+  transition: all 0.3s ease; /* Suaviza el efecto cuando se pasa el ratón */
+}
+
+.profile-img:hover {
+  box-shadow: 0 0 50px rgba(255, 0, 0, 0.7), 0 0 100px rgba(255, 0, 0, 0.5); /* Sombra más intensa al pasar el ratón */
+  transform: scale(1.05); /* Ligeramente agranda la imagen al pasar el ratón */
 }
 
 
