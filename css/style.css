@@ -103,6 +103,7 @@ body {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
+  border: 4px solid #f44336;
   box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); /* Sombra inicial */
   transition: all 0.3s ease; /* Suaviza el efecto al pasar el ratón */
 }
@@ -187,8 +188,6 @@ body {
 }
 
 
-
-
 /* Animación para mover los iconos de arriba a abajo */
 @keyframes scroll-up {
   0% {
@@ -197,4 +196,45 @@ body {
   100% {
     transform: translateY(-100%); /* Mueve todo el contenedor hacia arriba */
   }
+}
+
+/* Ya tienes el CSS general, solo añades las nuevas reglas para la sección "Sobre Mí" */
+
+.github-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.github-link {
+  text-decoration: none;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.github-link:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+}
+
+.github-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.profile-info p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.profile-info h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
 }

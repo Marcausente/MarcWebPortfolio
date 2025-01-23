@@ -45,3 +45,4 @@ document.addEventListener("DOMContentLoaded", function () {
   // Iniciar la animación al cargar la página
   animatePulse();
 });
+
