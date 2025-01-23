@@ -53,7 +53,7 @@ body {
   color: black; /* Texto negro al pasar el ratón */
   transform: scale(1.1); /* Crece al pasar el ratón */
   border-radius: 8px; /* Esquinas redondeadas */
-  box-shadow: 0 0 15px rgba(119, 1, 1, 0.7); /* Sombra rojiza al pasar el ratón */
+  box-shadow: 0 0 15px rgba(119, 1, 1, 0.9); /* Sombra rojiza al pasar el ratón */
 }
 
 .container {
