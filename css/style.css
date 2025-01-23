@@ -136,7 +136,42 @@ body {
   filter: grayscale(100%);
 }
 
+@media screen and (max-width: 768px) {
+  body {
+    font-family: Arial, sans-serif; /* Cambiar la fuente a Arial en dispositivos móviles */
+    font-size: 12px; /* Fuente más pequeña para móviles */
+  }
 
+  .multiplataforma {
+    display: block; /* Esto fuerza que el texto se divida en dos líneas */
+  }
+
+  .navbar a {
+    font-family: Arial, sans-serif; /* Cambiar la fuente de los enlaces de la Navbar */
+    font-size: 14px; /* Tamaño de texto más pequeño en la Navbar */
+    padding: 6px 12px; /* Menos padding para ajustar mejor */
+  }
+
+  .profile-info h1 {
+    font-family: Arial, sans-serif; /* Cambiar la fuente del título */
+    font-size: 18px; /* Nombre más pequeño */
+  }
+
+  .profile-info p {
+    font-family: Arial, sans-serif; /* Cambiar la fuente del texto descriptivo */
+    font-size: 14px; /* Texto descriptivo más pequeño */
+  }
+
+  .logos img {
+    width: 25px; /* Logos aún más pequeños */
+    height: 25px;
+  }
+
+  .profile-img {
+    width: 100px; /* Avatar más pequeño */
+    height: 100px;
+  }
+}
 
 
 
