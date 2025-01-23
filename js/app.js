@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para actualizar el color dinámico del pulso (sin amarillo, naranja o rojo brillante)
   function updatePulse() {
-    hue = (hue + 0.2) % 40; // Incremento muy lento para el cambio de color
+    hue = (hue + 0.5) % 20; // Incremento muy lento para el cambio de color
     const pulseColor = `hsl(${hue}, 100%, 30%)`; // Tonos más oscuros, centrados en granates y burdeos
     profileImg.style.boxShadow = `
       0 0 30px ${pulseColor},
