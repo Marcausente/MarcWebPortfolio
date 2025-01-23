@@ -28,6 +28,7 @@ body {
 }
 
 .profile-info {
+  font-family: 'Menlo', 'Courier New', Courier, monospace;
   position: absolute;
   top: 60%; /* Ajustado ligeramente para que quede debajo de la imagen */
   left: 50%;
@@ -35,17 +36,24 @@ body {
   text-align: center;
   color: black; /* Establecer color negro para el texto */
   z-index: 2;
+  width: 80%; /* Reducir el ancho */
+  padding: 10px; /* Agregar un poco de relleno */
+  letter-spacing: -0.5px; /* Reducir el espacio entre caracteres */
+  line-height: 1.5; /* Añadir separación entre líneas */
 }
 
 .profile-info h1 {
   font-size: 24px;
-  margin-bottom: 5px;
+  margin-bottom: 2px; /* Reducir el margen inferior */
 }
 
 .profile-info p {
   font-size: 18px;
-  margin: 5px 0;
+  margin: 2px 0; /* Reducir los márgenes superiores e inferiores */
+  line-height: 1.5; /* Añadir separación entre líneas */
 }
+
+
 
 .profile-img {
   width: 150px;
@@ -85,6 +93,10 @@ body {
   height: 40px;
   filter: grayscale(100%);
 }
+
+
+
+
 
 /* Animación para mover los iconos de arriba a abajo */
 @keyframes scroll-up {
