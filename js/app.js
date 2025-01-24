@@ -10,40 +10,150 @@ document.addEventListener("DOMContentLoaded", function () {
     container.style.animationDuration = `${animationDuration}s`;
   });
 
+  // Efecto de aparición gradual al cargar la página
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    document.body.style.opacity = "1";
+    document.body.style.transition = "opacity 0.8s ease";
+  }, 100);
+
+  // Efecto mejorado para la imagen de perfil
   const profileImg = document.querySelector('.profile-img');
+  if (profileImg) {
+    profileImg.addEventListener('mouseenter', () => {
+      profileImg.style.transform = 'scale(1.05) rotate(-2deg)';
+      profileImg.style.boxShadow = '0 15px 35px rgba(244, 67, 54, 0.3)';
+    });
 
-  // Efecto al pasar el mouse
-  profileImg.addEventListener('mouseenter', () => {
-    profileImg.style.transition = 'box-shadow 0.3s ease, transform 0.3s ease';
-    profileImg.style.boxShadow = '0 0 50px rgba(255, 0, 0, 0.7), 0 0 100px rgba(255, 0, 0, 0.5)';
-    profileImg.style.transform = 'scale(1.05)';
-  });
-
-  profileImg.addEventListener('mouseleave', () => {
-    profileImg.style.boxShadow = '0 0 30px rgba(255, 0, 0, 0.5)';
-    profileImg.style.transform = 'scale(1)';
-  });
-
-  // Inicializar variables para la animación de pulso
-  let hue = 0;
-
-  // Función para actualizar el color dinámico del pulso (sin amarillo, naranja o rojo brillante)
-  function updatePulse() {
-    hue = (hue + 0.3) % 40; // Incremento muy lento para el cambio de color
-    const pulseColor = `hsl(${hue}, 100%, 30%)`; // Tonos más oscuros, centrados en granates y burdeos
-    profileImg.style.boxShadow = `
-      0 0 30px ${pulseColor},
-      0 0 60px ${pulseColor}`;
+    profileImg.addEventListener('mouseleave', () => {
+      profileImg.style.transform = 'scale(1) rotate(0deg)';
+      profileImg.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+    });
   }
 
-  // Animación continua con `requestAnimationFrame`
-  function animatePulse() {
-    updatePulse();
-    requestAnimationFrame(animatePulse);
+  // Efecto parallax suave para el fondo
+  document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+    document.body.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+  });
+
+  // Animación de entrada para las tarjetas de proyecto
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px'
+  };
+
+  const projectObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        projectObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.project-card').forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(50px)';
+    card.style.transition = `all 0.6s ease ${index * 0.2}s`;
+    projectObserver.observe(card);
+  });
+
+  // Efecto hover mejorado para las tarjetas de proyecto
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      card.style.transform = `
+        perspective(1000px)
+        rotateX(${(y - rect.height / 2) / 20}deg)
+        rotateY(${-(x - rect.width / 2) / 20}deg)
+        translateY(-5px)
+      `;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+    });
+  });
+
+  // Efecto de typing para el texto "Marcausente"
+  const typewriter = document.querySelector('.typewriter');
+  if (typewriter) {
+    const text = typewriter.textContent;
+    typewriter.textContent = '';
+    let i = 0;
+    
+    function typeText() {
+      if (i < text.length) {
+        typewriter.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeText, 100);
+      }
+    }
+    
+    // Iniciar el efecto cuando el elemento sea visible
+    const typewriterObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        typeText();
+        typewriterObserver.unobserve(typewriter);
+      }
+    });
+    
+    typewriterObserver.observe(typewriter);
   }
 
-  // Iniciar la animación al cargar la página
-  animatePulse();
+  // Smooth scroll mejorado con animación
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        const targetPosition = targetElement.offsetTop - 80;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 1000;
+        let start = null;
+        
+        function animation(currentTime) {
+          if (start === null) start = currentTime;
+          const timeElapsed = currentTime - start;
+          const progress = Math.min(timeElapsed / duration, 1);
+          
+          window.scrollTo(0, startPosition + distance * easeInOutCubic(progress));
+          
+          if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+          }
+        }
+        
+        function easeInOutCubic(t) {
+          return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        }
+        
+        requestAnimationFrame(animation);
+      }
+    });
+  });
+
+  // Efecto de resaltado para las tecnologías
+  document.querySelectorAll('.tech-stack span').forEach(tech => {
+    tech.addEventListener('mouseenter', () => {
+      tech.style.transform = 'translateY(-5px) scale(1.1)';
+      tech.style.boxShadow = '0 5px 15px rgba(244, 67, 54, 0.2)';
+    });
+
+    tech.addEventListener('mouseleave', () => {
+      tech.style.transform = 'translateY(0) scale(1)';
+      tech.style.boxShadow = 'none';
+    });
+  });
 });
 
 document.querySelector('.scroll-indicator a').addEventListener('click', function(e) {
@@ -104,61 +214,6 @@ document.querySelectorAll('.navbar a').forEach(anchor => {
             }
         }
     });
-});
-
-// Efecto de máquina de escribir para el nickname
-function typeWriter(element, text, speed = 100) {
-  let i = 0;
-  element.textContent = '';
-  
-  function type() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
-  }
-  
-  type();
-}
-
-// Iniciar efecto de máquina de escribir
-document.addEventListener("DOMContentLoaded", function() {
-  const typewriterElement = document.querySelector('.typewriter');
-  const text = "Marcausente"; // Texto fijo
-  
-  // Iniciar la animación inicial
-  typeWriter(typewriterElement, text);
-  
-  // Repetir la animación cada 10 segundos
-  setInterval(() => {
-    typeWriter(typewriterElement, text);
-  }, 10000);
-});
-
-// Animación de aparición para las tarjetas de proyectos
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
-
-document.addEventListener('DOMContentLoaded', () => {
-  const projectCards = document.querySelectorAll('.project-card');
-  projectCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(50px)';
-    card.style.transition = `all 0.5s ease ${index * 0.2}s`;
-    observer.observe(card);
-  });
 });
 
 // Clase CSS para la animación de aparición

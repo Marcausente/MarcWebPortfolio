@@ -11,6 +11,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  color: #2c3e50; /* Color de texto más suave que el negro puro */
 }
 
 /* Menú de navegación */
@@ -18,13 +19,13 @@ body {
   position: fixed; /* Para que quede fija en la parte superior */
   top: 0;
   width: 100%;
-  background-color: rgba(245, 245, 245, 0.4); /* Gris claro translúcido */
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px); /* Desenfoque estilo Apple */
   display: flex;
   justify-content: center;
   padding: 10px 0;
   z-index: 10; /* Para que esté sobre otros elementos */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 
 .navbar ul {
@@ -46,14 +47,14 @@ body {
   padding: 10px 20px;
   transition: all 0.3s ease;
   display: block;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .navbar a:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Fondo negro translúcido */
-  color: black; /* Texto negro al pasar el ratón */
-  transform: scale(1.1); /* Crece al pasar el ratón */
-  border-radius: 8px; /* Esquinas redondeadas */
-  box-shadow: 0 0 15px rgba(119, 1, 1, 0.9); /* Sombra rojiza al pasar el ratón */
+  color: #f44336;
+  transform: translateY(-2px);
+  box-shadow: none;
 }
 
 .container {
@@ -66,7 +67,7 @@ body {
 
 .image-container {
   position: absolute;
-  top: 40%; /* Subido un poco hacia arriba */
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -88,8 +89,9 @@ body {
 }
 
 .profile-info h1 {
-  font-size: 24px;
-  margin-bottom: 2px; /* Reducir el margen inferior */
+  font-size: 2.8em;
+  letter-spacing: -0.5px;
+  margin-bottom: 15px;
 }
 
 .profile-info p {
@@ -104,12 +106,13 @@ body {
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #f44336;
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); /* Sombra inicial */
-  transition: all 0.3s ease; /* Suaviza el efecto al pasar el ratón */
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .profile-img:hover {
-  transform: scale(1.05); /* Ligeramente agranda la imagen al pasar el ratón */
+  transform: scale(1.03) rotate(-2deg);
+  box-shadow: 0 15px 30px rgba(244, 67, 54, 0.2);
 }
 
 .logos-container {
@@ -162,7 +165,7 @@ body {
 
   .profile-info h1 {
     font-family: Arial, sans-serif; /* Cambiar la fuente del título */
-    font-size: 18px; /* Nombre más pequeño */
+    font-size: 2.2em;
   }
 
   .profile-info p {
@@ -294,6 +297,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.about-container:hover {
+  transform: translateY(-5px);
 }
 
 .about-content {
@@ -346,20 +354,17 @@ body {
 
 .tech-stack span {
   background: #f5f5f5;
-  padding: 10px 20px;
-  border-radius: 25px;
+  padding: 6px 14px;
+  border-radius: 15px;
   font-size: 0.9em;
-  color: #333;
+  margin: 4px;
   transition: all 0.3s ease;
-  border: 1px solid #eee;
 }
 
 .tech-stack span:hover {
-  background: #fff;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(244, 67, 54, 0.2);
-  border-color: #f44336;
-  color: #f44336;
+  background: #f44336;
+  color: white;
+  transform: translateY(-2px);
 }
 
 .bio {
@@ -371,11 +376,12 @@ body {
 
 /* Estilos para el footer */
 .footer {
-  background: #1a1a1a;
+  background: #24292e; /* Color negro original del footer */
   color: white;
   padding: 40px 0;
   margin-top: 0;
   padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .footer-content {
@@ -390,6 +396,7 @@ body {
 
 .footer-section {
   text-align: center;
+  color: white;
 }
 
 .social-links {
@@ -409,10 +416,11 @@ body {
   border-radius: 20px;
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.1);
+  opacity: 0.9;
 }
 
 .social-link:hover {
-  background: rgba(244, 67, 54, 0.8);
+  opacity: 1;
   transform: translateY(-2px);
 }
 
@@ -490,6 +498,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.about-container:hover, .projects-container:hover {
+  transform: translateY(-5px);
 }
 
 /* Línea decorativa superior sutil */
@@ -553,7 +566,7 @@ body {
   55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
   50% { transform: none; opacity: 1; }
   100% { transform: none; opacity: 1; }
-}
+} 
 
 /* Estilos para la sección de proyectos */
 #mis-proyectos {
@@ -603,13 +616,14 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s ease;
   position: relative;
+  border: none;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(244, 67, 54, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .project-image {
@@ -658,9 +672,10 @@ body {
 .project-tech span {
   background: rgba(244, 67, 54, 0.9);
   color: white;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.9em;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  letter-spacing: 0.5px;
   backdrop-filter: blur(5px);
 }
 
@@ -706,7 +721,7 @@ body {
 
 .project-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(244, 67, 54, 0.2);
 }
 
 /* Ajustes para las columnas de logos en la sección de proyectos */
@@ -735,12 +750,17 @@ body {
   }
 
   .about-container, .projects-container {
-    padding: 20px;
-    margin: 10px;
+    padding: 25px;
+    margin: 15px;
   }
   
   #about, #mis-proyectos {
     padding: 60px 10px;
+  }
+
+  .tech-stack span {
+    font-size: 0.8em;
+    padding: 5px 12px;
   }
 }
 
@@ -767,12 +787,14 @@ body {
   width: 40px;
   height: 40px;
   filter: grayscale(100%);
-  transition: filter 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0.7;
 }
 
 .logos-row img:hover {
+  transform: scale(1.15);
+  opacity: 1;
   filter: grayscale(0%);
-  transform: scale(1.1);
 }
 
 @keyframes scroll-horizontal {
@@ -794,4 +816,29 @@ body {
     width: 30px;
     height: 30px;
   }
+}
+
+/* Mejoras en la tipografía */
+h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+p {
+  line-height: 1.7;
+  color: #4a4a4a;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilo para el copyright */
+.copyright {
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9em;
+  opacity: 0.9;
 }
