@@ -276,9 +276,10 @@ body {
 #about {
   min-height: 100vh;
   background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
-  padding: 80px 20px 1px; /* Reducido el padding inferior de 80px a 20px */
+  padding: 80px 20px 40px; /* Aumentado el padding inferior */
   position: relative;
   z-index: 2;
+  margin-bottom: 30px; /* Añadido margen inferior */
 }
 
 .about-container {
