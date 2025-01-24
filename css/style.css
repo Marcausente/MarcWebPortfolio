@@ -73,6 +73,27 @@ body {
   z-index: 2;
 }
 
+.image-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px; /* Tamaño más equilibrado */
+  height: 220px;
+  background: radial-gradient(
+    circle,
+    rgba(244, 67, 54, 0.35) 0%, /* Opacidad más equilibrada */
+    rgba(244, 67, 54, 0.25) 30%,
+    rgba(244, 67, 54, 0.15) 60%,
+    transparent 85%
+  );
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(20px); /* Desenfoque más sutil */
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
 .profile-info {
   font-family: 'Menlo', 'Courier New', Courier, monospace;
   position: absolute;
@@ -101,13 +122,15 @@ body {
 }
 
 .profile-img {
+  position: relative;
   width: 150px;
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #f44336;
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+  box-shadow: 0 0 35px rgba(255, 0, 0, 0.45); /* Sombra más equilibrada */
   transition: transform 0.4s ease, box-shadow 0.4s ease;
+  z-index: 3;
 }
 
 .profile-img:hover {
@@ -180,14 +203,19 @@ body {
 
 }
 
-.profile-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  animation: glowPulse 3s ease-in-out infinite; /* Animación suave de respiración */
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); /* Sombra roja constante */
-  transition: all 0.3s ease; /* Suaviza el efecto cuando se pasa el ratón */
+@keyframes glowPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8; /* Opacidad más equilibrada */
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15); /* Pulsación más sutil */
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
 }
 
 /* Animación para mover los iconos de arriba a abajo */
