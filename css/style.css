@@ -375,6 +375,7 @@ body {
   color: white;
   padding: 40px 0;
   margin-top: 0;
+  padding-top: 20px;
 }
 
 .footer-content {
@@ -561,6 +562,7 @@ body {
   padding: 80px 20px;
   position: relative;
   overflow: hidden;
+  padding-bottom: 0;
 }
 
 .projects-container {
@@ -739,5 +741,57 @@ body {
   
   #about, #mis-proyectos {
     padding: 60px 10px;
+  }
+}
+
+/* Nuevo estilo para los logos horizontales */
+.logos-container-horizontal {
+  width: 100%;
+  padding: 40px 0;
+  margin: 40px 0 0 0;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.logos-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 0 20px;
+  animation: scroll-horizontal 30s linear infinite;
+}
+
+.logos-row img {
+  width: 40px;
+  height: 40px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.logos-row img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .logos-row {
+    gap: 20px;
+  }
+  
+  .logos-row img {
+    width: 30px;
+    height: 30px;
   }
 }
