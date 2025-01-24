@@ -1,17 +1,35 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Forzar modo claro */
+:root {
+  color-scheme: light;
 }
 
 body {
   display: block;
-  background-color: #fff;
+  background-color: #ffffff;
   overflow-y: auto;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
   color: #2c3e50; /* Color de texto más suave que el negro puro */
+  forced-color-adjust: none;
+}
+
+/* Asegurar que todos los elementos usen colores claros */
+* {
+  color-scheme: light;
+}
+
+/* Asegurar que los enlaces mantienen su color */
+a {
+  color: inherit;
+}
+
+/* Mantener el fondo blanco incluso en modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #ffffff !important;
+    color: #2c3e50 !important;
+  }
 }
 
 /* Menú de navegación */
