@@ -116,14 +116,14 @@ function typeWriter(element, text, speed = 100) {
 // Iniciar efecto de máquina de escribir
 document.addEventListener("DOMContentLoaded", function() {
   const typewriterElement = document.querySelector('.typewriter');
-  const originalText = typewriterElement.textContent;
+  const text = "Marcausente"; // Texto fijo
   
   // Iniciar la animación inicial
-  typeWriter(typewriterElement, originalText);
+  typeWriter(typewriterElement, text);
   
   // Repetir la animación cada 10 segundos
   setInterval(() => {
-    typeWriter(typewriterElement, originalText);
+    typeWriter(typewriterElement, text);
   }, 10000);
 });
 
