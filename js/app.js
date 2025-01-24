@@ -38,22 +38,48 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
   });
 
-  // Animación de entrada para las tarjetas de proyecto
-  const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px'
-  };
+  // Mejorar el observer para las secciones
+  const sections = document.querySelectorAll('#about, #mis-proyectos');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Cuando la sección es visible
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      } else {
+        // Cuando la sección no es visible
+        entry.target.style.opacity = '0';
+        entry.target.style.transform = 'translateY(20px)';
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
 
+  // Aplicar el observer a las secciones
+  sections.forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'all 0.8s ease-out';
+    sectionObserver.observe(section);
+  });
+
+  // Observer mejorado para las tarjetas de proyecto
   const projectObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
-        projectObserver.unobserve(entry.target);
+      } else {
+        entry.target.style.opacity = '0';
+        entry.target.style.transform = 'translateY(50px)';
       }
     });
-  }, observerOptions);
+  }, {
+    threshold: 0.1
+  });
 
+  // Aplicar el observer a las tarjetas de proyecto
   document.querySelectorAll('.project-card').forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(50px)';
@@ -225,25 +251,4 @@ document.head.insertAdjacentHTML('beforeend', `
     }
   </style>
 `);
-
-// Mantener solo el efecto de aparición para las secciones
-const sections = document.querySelectorAll('#about, #mis-proyectos');
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-      sectionObserver.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.1
-});
-
-sections.forEach(section => {
-  section.style.opacity = '0';
-  section.style.transform = 'translateY(20px)';
-  section.style.transition = 'all 0.8s ease-out';
-  sectionObserver.observe(section);
-});
 
