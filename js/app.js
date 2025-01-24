@@ -127,3 +127,38 @@ document.addEventListener("DOMContentLoaded", function() {
   }, 10000);
 });
 
+// Animación de aparición para las tarjetas de proyectos
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(50px)';
+    card.style.transition = `all 0.5s ease ${index * 0.2}s`;
+    observer.observe(card);
+  });
+});
+
+// Clase CSS para la animación de aparición
+document.head.insertAdjacentHTML('beforeend', `
+  <style>
+    .project-card.visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  </style>
+`);
+
