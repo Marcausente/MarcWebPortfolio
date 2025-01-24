@@ -75,7 +75,7 @@ body {
 .profile-info {
   font-family: 'Menlo', 'Courier New', Courier, monospace;
   position: absolute;
-  top: 65%; /* Bajado un poco para no solaparse con la imagen */
+  top: 65%; 
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
