@@ -275,11 +275,11 @@ body {
 /* Nuevo estilo para la sección Sobre Mí */
 #about {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
-  padding: 80px 20px 40px; /* Aumentado el padding inferior */
+  background: #fff; /* Cambiado a fondo blanco sólido */
+  padding: 80px 20px 40px;
   position: relative;
   z-index: 2;
-  margin-bottom: 30px; /* Añadido margen inferior */
+  margin-bottom: 30px;
 }
 
 .about-container {
