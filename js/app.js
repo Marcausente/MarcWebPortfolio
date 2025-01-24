@@ -56,3 +56,44 @@ document.querySelector('.scroll-indicator a').addEventListener('click', function
   });
 });
 
+// Añadir efecto de aparición gradual para elementos
+document.addEventListener('scroll', function() {
+  const elements = document.querySelectorAll('.tech-stack span, .about-container h4, .bio');
+  
+  elements.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const elementBottom = element.getBoundingClientRect().bottom;
+    
+    if (elementTop < window.innerHeight && elementBottom > 0) {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+    }
+  });
+});
+
+// Mostrar/ocultar indicador de scroll basado en la posición
+window.addEventListener('scroll', function() {
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (window.scrollY > 100) {
+    scrollIndicator.style.opacity = '0';
+  } else {
+    scrollIndicator.style.opacity = '1';
+  }
+});
+
+// Añadir scroll suave para los enlaces de navegación
+document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
