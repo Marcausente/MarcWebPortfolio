@@ -19,8 +19,8 @@ body {
   position: fixed; /* Para que quede fija en la parte superior */
   top: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px); /* Desenfoque estilo Apple */
+  background-color: rgba(255, 255, 255, 0.7); /* Ligeramente transparente */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque para mejor legibilidad */
   display: flex;
   justify-content: center;
   padding: 10px 0;
