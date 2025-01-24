@@ -860,6 +860,12 @@ p {
 /* Scroll suave */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Asegurarse de que las secciones tengan un punto de anclaje correcto */
+section {
+  scroll-margin-top: 80px;
 }
 
 /* Estilo para el copyright */

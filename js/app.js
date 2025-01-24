@@ -217,30 +217,79 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// Añadir scroll suave para los enlaces de navegación
+// Mejorar el scroll suave
 document.querySelectorAll('.navbar a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         
         if (targetId === 'index.html') {
-            // Si el enlace es "Inicio", scroll al top de la página
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         } else if (targetId.startsWith('#')) {
-            // Si es un enlace interno (#about, #mis-proyectos, etc)
             const targetSection = document.querySelector(targetId);
             if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const headerOffset = 80;
+                const elementPosition = targetSection.offsetTop - headerOffset;
+                
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
                 });
             }
         }
     });
 });
+
+// Función de scroll personalizada para mayor suavidad
+function smoothScroll(target, duration) {
+    const targetPosition = target;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    // Función de easing para un movimiento más natural
+    function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+// Asegurarse de que el scroll sea suave incluso en Safari
+if (!window.CSS || !CSS.supports('scroll-behavior', 'smooth')) {
+    document.querySelectorAll('.navbar a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            
+            if (targetId === 'index.html') {
+                smoothScroll(0, 1000);
+            } else if (targetId.startsWith('#')) {
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    const headerOffset = 80;
+                    const elementPosition = targetSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    smoothScroll(offsetPosition, 1000);
+                }
+            }
+        });
+    });
+}
 
 // Clase CSS para la animación de aparición
 document.head.insertAdjacentHTML('beforeend', `
