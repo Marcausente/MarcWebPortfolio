@@ -97,3 +97,33 @@ document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Efecto de máquina de escribir para el nickname
+function typeWriter(element, text, speed = 100) {
+  let i = 0;
+  element.textContent = '';
+  
+  function type() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  
+  type();
+}
+
+// Iniciar efecto de máquina de escribir
+document.addEventListener("DOMContentLoaded", function() {
+  const typewriterElement = document.querySelector('.typewriter');
+  const originalText = typewriterElement.textContent;
+  
+  // Iniciar la animación inicial
+  typeWriter(typewriterElement, originalText);
+  
+  // Repetir la animación cada 10 segundos
+  setInterval(() => {
+    typeWriter(typewriterElement, originalText);
+  }, 10000);
+});
+
