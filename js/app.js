@@ -171,3 +171,24 @@ document.head.insertAdjacentHTML('beforeend', `
   </style>
 `);
 
+// Mantener solo el efecto de aparición para las secciones
+const sections = document.querySelectorAll('#about, #mis-proyectos');
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      sectionObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+sections.forEach(section => {
+  section.style.opacity = '0';
+  section.style.transform = 'translateY(20px)';
+  section.style.transition = 'all 0.8s ease-out';
+  sectionObserver.observe(section);
+});
+

@@ -274,21 +274,26 @@ body {
 
 /* Nuevo estilo para la sección Sobre Mí */
 #about {
-  min-height: 100vh;
-  background: #fff;
-  padding: 80px 20px 40px;
   position: relative;
-  z-index: 2;
-  margin-bottom: 0; /* Eliminado el margen inferior */
+  padding: 80px 20px;
+  min-height: 100vh;
+  background-color: #fff;
+  background-image: 
+    linear-gradient(0deg, transparent 24px, rgba(0, 0, 0, 0.05) 25px, transparent 26px),
+    linear-gradient(90deg, transparent 24px, rgba(0, 0, 0, 0.05) 25px, transparent 26px);
+  background-size: 25px 25px;
 }
 
 .about-container {
-  max-width: 800px;
+  background: rgba(255, 255, 255, 0.97);
+  position: relative;
+  z-index: 2;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .about-content {
@@ -462,63 +467,44 @@ body {
   transform: translateY(-2px);
 }
 
-/* Formas del fondo */
-.background-shapes {
+/* Estilos actualizados para las secciones */
+#about, #mis-proyectos {
+  position: relative;
+  padding: 80px 20px;
+  min-height: 100vh;
+  background-color: #fff;
+  background-image: 
+    linear-gradient(0deg, transparent 24px, rgba(0, 0, 0, 0.05) 25px, transparent 26px),
+    linear-gradient(90deg, transparent 24px, rgba(0, 0, 0, 0.05) 25px, transparent 26px);
+  background-size: 25px 25px;
+}
+
+.about-container, .projects-container {
+  background: rgba(255, 255, 255, 0.97);
+  position: relative;
+  z-index: 2;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Línea decorativa superior sutil */
+#about::before, #mis-proyectos::before {
+  content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
-  animation: floatAnimation 20s infinite ease-in-out;
-}
-
-.shape-1 {
-  width: 300px;
-  height: 300px;
-  background: rgba(244, 67, 54, 0.3);
-  top: 20%;
-  left: 20%;
-  animation-delay: 0s;
-}
-
-.shape-2 {
-  width: 250px;
-  height: 250px;
-  background: rgba(33, 150, 243, 0.3);
-  top: 50%;
-  right: 20%;
-  animation-delay: -5s;
-}
-
-.shape-3 {
-  width: 200px;
-  height: 200px;
-  background: rgba(76, 175, 80, 0.3);
-  bottom: 20%;
-  left: 30%;
-  animation-delay: -10s;
-}
-
-@keyframes floatAnimation {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(50px, 50px) rotate(90deg);
-  }
-  50% {
-    transform: translate(0, 100px) rotate(180deg);
-  }
-  75% {
-    transform: translate(-50px, 50px) rotate(270deg);
-  }
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(0, 0, 0, 0.1),
+    transparent
+  );
 }
 
 /* Efecto de anillo alrededor de la foto */
@@ -744,5 +730,14 @@ body {
 
   .project-link {
     text-align: center;
+  }
+
+  .about-container, .projects-container {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  #about, #mis-proyectos {
+    padding: 60px 10px;
   }
 }
