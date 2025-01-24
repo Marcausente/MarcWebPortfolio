@@ -82,17 +82,26 @@ window.addEventListener('scroll', function() {
 });
 
 // Añadir scroll suave para los enlaces de navegación
-document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('.navbar a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
         
-        if (targetSection) {
-            targetSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+        if (targetId === 'index.html') {
+            // Si el enlace es "Inicio", scroll al top de la página
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
+        } else if (targetId.startsWith('#')) {
+            // Si es un enlace interno (#about, #mis-proyectos, etc)
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     });
 });
