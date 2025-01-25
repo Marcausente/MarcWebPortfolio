@@ -4,6 +4,7 @@
 }
 
 body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: block;
   background-color: #ffffff;
   overflow-y: auto;
@@ -113,18 +114,18 @@ a {
 }
 
 .profile-info {
-  font-family: 'Menlo', 'Courier New', Courier, monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: absolute;
   top: 65%; 
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: black; /* Establecer color negro para el texto */
+  color: black;
   z-index: 2;
-  width: 80%; /* Reducir el ancho */
-  padding: 10px; /* Agregar un poco de relleno */
-  letter-spacing: -0.5px; /* Reducir el espacio entre caracteres */
-  line-height: 1.5; /* Añadir separación entre líneas */
+  width: 80%;
+  padding: 10px;
+  letter-spacing: -0.5px;
+  line-height: 1.5;
 }
 
 .profile-info h1 {
@@ -134,9 +135,10 @@ a {
 }
 
 .profile-info p {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
-  margin: 2px 0; /* Reducir los márgenes superiores e inferiores */
-  line-height: 1.5; /* Añadir separación entre líneas */
+  margin: 2px 0;
+  line-height: 1.5;
 }
 
 .profile-img {
@@ -901,4 +903,9 @@ section {
   margin-top: 20px;
   font-size: 0.9em;
   opacity: 0.9;
+}
+
+/* Asegurar que los títulos usen la variante Display de San Francisco */
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
