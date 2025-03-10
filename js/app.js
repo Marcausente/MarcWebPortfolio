@@ -169,17 +169,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Manejar los enlaces de la navbar
   document.querySelectorAll('.navbar a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
       
-      if (href === 'index.html') {
-        // Si es el enlace a index.html, permitir el comportamiento normal
-        return;
+      if (targetId === '#top') {
+        // Scroll al inicio de la página
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else if (targetId.startsWith('#')) {
+        // Scroll a una sección específica
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          const headerOffset = 80;
+          const elementPosition = targetSection.offsetTop - headerOffset;
+          
+          window.scrollTo({
+            top: elementPosition,
+            behavior: 'smooth'
+          });
+        }
       }
+    });
+  });
+
+  // Manejar específicamente el enlace de inicio
+  document.getElementById('inicio-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // Manejar los enlaces de la navbar para las secciones
+  document.querySelectorAll('.navbar a[href^="#"]:not(#inicio-link)').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
       
-      if (href.startsWith('#')) {
-        e.preventDefault();
-        scrollToSection(href);
+      if (targetId.startsWith('#')) {
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          const headerOffset = 80;
+          const elementPosition = targetSection.offsetTop - headerOffset;
+          
+          window.scrollTo({
+            top: elementPosition,
+            behavior: 'smooth'
+          });
+        }
       }
     });
   });
