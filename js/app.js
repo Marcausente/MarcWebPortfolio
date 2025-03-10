@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('.project-card').forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(50px)';
-    card.style.transition = `all 0.6s ease ${index * 0.2}s`;
+    card.style.transition = `opacity 0.6s ease, transform 0.6s ease`;
     projectObserver.observe(card);
   });
 
@@ -133,62 +133,55 @@ document.addEventListener("DOMContentLoaded", function () {
     typewriterObserver.observe(typewriter);
   }
 
-  // Smooth scroll mejorado con animación
+  // Función mejorada para scroll suave
+  function scrollToSection(targetId) {
+    const targetElement = document.querySelector(targetId);
+    if (!targetElement) return;
+    
+    const headerOffset = 80;
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+
+  // Aplicar a todos los enlaces internos
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
       e.preventDefault();
       const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
+      scrollToSection(targetId);
+    });
+  });
+
+  // Manejar específicamente el indicador de scroll (flecha)
+  const scrollIndicator = document.querySelector('.scroll-indicator a');
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      scrollToSection(targetId);
+    });
+  }
+
+  // Manejar los enlaces de la navbar
+  document.querySelectorAll('.navbar a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
       
-      if (targetElement) {
-        const targetPosition = targetElement.offsetTop - 80;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1000;
-        let start = null;
-        
-        function animation(currentTime) {
-          if (start === null) start = currentTime;
-          const timeElapsed = currentTime - start;
-          const progress = Math.min(timeElapsed / duration, 1);
-          
-          window.scrollTo(0, startPosition + distance * easeInOutCubic(progress));
-          
-          if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
-          }
-        }
-        
-        function easeInOutCubic(t) {
-          return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-        }
-        
-        requestAnimationFrame(animation);
+      if (href === 'index.html') {
+        // Si es el enlace a index.html, permitir el comportamiento normal
+        return;
+      }
+      
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        scrollToSection(href);
       }
     });
-  });
-
-  // Efecto de resaltado para las tecnologías
-  document.querySelectorAll('.tech-stack span').forEach(tech => {
-    tech.addEventListener('mouseenter', () => {
-      tech.style.transform = 'translateY(-5px) scale(1.1)';
-      tech.style.boxShadow = '0 5px 15px rgba(244, 67, 54, 0.2)';
-    });
-
-    tech.addEventListener('mouseleave', () => {
-      tech.style.transform = 'translateY(0) scale(1)';
-      tech.style.boxShadow = 'none';
-    });
-  });
-});
-
-document.querySelector('.scroll-indicator a').addEventListener('click', function(e) {
-  e.preventDefault();
-  const targetId = this.getAttribute('href');
-  const targetSection = document.querySelector(targetId);
-  
-  targetSection.scrollIntoView({
-    behavior: 'smooth'
   });
 });
 
@@ -215,32 +208,6 @@ window.addEventListener('scroll', function() {
   } else {
     scrollIndicator.style.opacity = '1';
   }
-});
-
-// Mejorar el scroll suave
-document.querySelectorAll('.navbar a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        
-        if (targetId === 'index.html') {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        } else if (targetId.startsWith('#')) {
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                const headerOffset = 80;
-                const elementPosition = targetSection.offsetTop - headerOffset;
-                
-                window.scrollTo({
-                    top: elementPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    });
 });
 
 // Función de scroll personalizada para mayor suavidad
