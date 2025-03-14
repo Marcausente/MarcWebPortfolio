@@ -309,3 +309,59 @@ document.head.insertAdjacentHTML('beforeend', `
   </style>
 `);
 
+// Funcionalidad para las pestañas en la sección Sobre Mí
+document.addEventListener("DOMContentLoaded", function() {
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+  
+  // Inicializar las barras de habilidades con animación
+  function initSkillBars() {
+    const skillLevels = document.querySelectorAll('.skill-level');
+    skillLevels.forEach(level => {
+      const width = level.style.width;
+      level.style.width = '0';
+      setTimeout(() => {
+        level.style.width = width;
+      }, 300);
+    });
+  }
+  
+  // Cambiar entre pestañas
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Desactivar todas las pestañas
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabPanes.forEach(pane => pane.classList.remove('active'));
+      
+      // Activar la pestaña seleccionada
+      button.classList.add('active');
+      const tabId = button.getAttribute('data-tab');
+      const targetPane = document.getElementById(`${tabId}-tab`);
+      
+      if (targetPane) {
+        targetPane.classList.add('active');
+        
+        // Si es la pestaña de habilidades, inicializar las barras
+        if (tabId === 'skills') {
+          initSkillBars();
+        }
+      }
+    });
+  });
+  
+  // Inicializar las barras de habilidades cuando se hace visible la sección
+  const skillsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && document.getElementById('skills-tab')) {
+        initSkillBars();
+        skillsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  const aboutSection = document.getElementById('about');
+  if (aboutSection) {
+    skillsObserver.observe(aboutSection);
+  }
+});
+

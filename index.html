@@ -148,43 +148,167 @@
   <div class="about-container">
     <h2>Sobre Mí</h2>
     <div class="about-content">
-      <div class="personal-info">
-        <h3>Marc Fernández</h3>
-        <p class="age">20 años</p>
-        <h4>Formación</h4>
-        <p>Grado Superior en Desarrollo de Aplicaciones Multiplataforma</p>
-        <h4>Tecnologías</h4>
-        <div class="tech-stack">
-          <span>Swift</span>
-          <span>Kotlin</span>
-          <span>Java</span>
-          <span>HTML/CSS</span>
-          <span>PHP</span>
-          <span>SwiftUI</span>
-          <span>Python</span>
-          <span>C#</span>
-          <span>SQL</span>
-          <span>MongoDB</span>
-          <span>Jetpack Compose</span>
-          <span>Oracle</span>
-          <span>XML</span>
-          <span>Lua</span>
+      <div class="about-grid">
+        <div class="about-profile">
+          <div class="profile-card">
+            <div class="profile-card-header">
+              <img src="img/cara.png" alt="Marc Fernández" class="about-profile-img">
+              <div class="profile-card-info">
+                <h3>Marc Fernández</h3>
+                <p class="profile-subtitle">Desarrollador Multiplataforma</p>
+                <p class="age"><span class="highlight">20</span> años</p>
+              </div>
+            </div>
+            <div class="profile-stats">
+              <div class="stat">
+                <span class="stat-value">9+</span>
+                <span class="stat-label">Proyectos</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">3+</span>
+                <span class="stat-label">Años estudiando</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">10+</span>
+                <span class="stat-label">Tecnologías</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="github-button-container">
+            <a href="https://github.com/marcausente" class="github-button" target="_blank">
+              <img src="img/Octicons-mark-github.svg" alt="GitHub">
+              <span>Visita mi GitHub</span>
+            </a>
+          </div>
         </div>
-
-        <h4>Sobre mí</h4>
-        <p class="bio">
-          Soy un desarrollador apasionado por la tecnología y la programación. 
-          Me especializo en el desarrollo de aplicaciones multiplataforma, 
-          con un fuerte interés en las tecnologías móviles y web. 
-          Disfruto enfrentando nuevos retos y aprendiendo constantemente 
-          nuevas tecnologías y metodologías de desarrollo.
-        </p>  
-
-        <div class="github-button-container">
-          <a href="https://github.com/marcausente" class="github-button" target="_blank">
-            <img src="img/Octicons-mark-github.svg" alt="GitHub">
-            <span>Visita mi GitHub</span>
-          </a>
+        
+        <div class="about-details">
+          <div class="about-tabs">
+            <button class="tab-btn active" data-tab="bio">Biografía</button>
+            <button class="tab-btn" data-tab="education">Formación</button>
+            <button class="tab-btn" data-tab="skills">Habilidades</button>
+          </div>
+          
+          <div class="tab-content">
+            <div class="tab-pane active" id="bio-tab">
+              <div class="tab-content-wrapper">
+                <p class="bio">
+                  Soy un estudiante de desarrollo de aplicaciones multiplataforma apasionado por la tecnología y la programación. Mi enfoque se centra en aprender a crear soluciones elegantes y funcionales que resuelvan problemas reales.
+                </p>
+                <p class="bio">
+                  Mi viaje en la programación comenzó con la curiosidad por entender cómo funcionan las aplicaciones que usamos a diario. Esa curiosidad se transformó en pasión cuando descubrí el poder de crear mis propias soluciones digitales a través de proyectos personales y académicos.
+                </p>
+                <p class="bio">
+                  Actualmente estoy formándome en diversas tecnologías, con especial interés en el desarrollo móvil para iOS y Android. Disfruto enfrentando nuevos retos y aprendiendo constantemente nuevas herramientas y lenguajes de programación.
+                </p>
+                <p class="bio">
+                  Mi objetivo es completar mi formación académica y comenzar mi carrera profesional en el mundo del desarrollo, contribuyendo a proyectos innovadores que tengan un impacto positivo en la sociedad digital.
+                </p>
+              </div>
+            </div>
+            
+            <div class="tab-pane" id="education-tab">
+              <div class="tab-content-wrapper">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <h4>Grado Superior en Desarrollo de Aplicaciones Multiplataforma</h4>
+                      <p class="timeline-date">2023 - 2025</p>
+                      <p>Formación especializada en el desarrollo de aplicaciones para diferentes plataformas, incluyendo móviles, web y escritorio.</p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <h4>Grado Medio en Sistemas Microinformáticos y Redes</h4>
+                      <p class="timeline-date">2021 - 2023</p>
+                      <p>Formación técnica en administración de sistemas, redes y soporte informático.</p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <h4>Aprendizaje Autodidacta</h4>
+                      <p class="timeline-date">Continuo</p>
+                      <p>Constante actualización a través de plataformas online, documentación oficial y proyectos personales.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tab-pane" id="skills-tab">
+              <div class="tab-content-wrapper">
+                <div class="skills-container">
+                  <div class="skills-category">
+                    <h4>Desarrollo Móvil</h4>
+                    <div class="skill-bars">
+                      <div class="skill-item">
+                        <span class="skill-name">Swift/SwiftUI</span>
+                        <div class="skill-bar">
+                          <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                      </div>
+                      <div class="skill-item">
+                        <span class="skill-name">Kotlin/Android</span>
+                        <div class="skill-bar">
+                          <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                      </div>
+                      <div class="skill-item">
+                        <span class="skill-name">Jetpack Compose</span>
+                        <div class="skill-bar">
+                          <div class="skill-level" style="width: 75%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="skills-category">
+                    <h4>Desarrollo Web</h4>
+                    <div class="skill-bars">
+                      <div class="skill-item">
+                        <span class="skill-name">HTML/CSS</span>
+                        <div class="skill-bar">
+                          <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                      </div>
+                      <div class="skill-item">
+                        <span class="skill-name">JavaScript (Básico)</span>
+                        <div class="skill-bar">
+                          <div class="skill-level" style="width: 40%"></div>
+                        </div>
+                      </div>
+                      <div class="skill-item">
+                        <span class="skill-name">PHP</span>
+                        <div class="skill-bar">
+                          <div class="skill-level" style="width: 70%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="skills-category">
+                    <h4>Otras Tecnologías</h4>
+                    <div class="tech-cloud">
+                      <span>Java</span>
+                      <span>Python</span>
+                      <span>C#</span>
+                      <span>SQL</span>
+                      <span>MongoDB</span>
+                      <span>Git</span>
+                      <span>Bash</span>
+                      <span>XML</span>
+                      <span>Lua</span>
+                      <span>Laravel</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
