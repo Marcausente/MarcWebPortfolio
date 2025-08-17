@@ -230,7 +230,7 @@ a {
 
 .image-container {
   position: absolute;
-  top: 35%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -261,7 +261,7 @@ a {
 .profile-info {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: absolute;
-  top: 50%; 
+  top: 60%; 
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -492,12 +492,13 @@ a {
 
 #portada {
   position: relative;
-  padding: 80px 20px;
-  min-height: 100vh;
+  height: 100vh;           /* Ocupa exactamente el alto de la ventana */
+  padding: 0 20px;         /* Solo padding lateral, no vertical */
   background-color: #fff;
-    background-image:
+  background-image:
     repeating-linear-gradient(135deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px, transparent 2px, transparent 20px);
   background-size: 40px 40px;
+  overflow: hidden; 
 }
 
 /* Nuevo estilo para la sección Sobre Mí */
