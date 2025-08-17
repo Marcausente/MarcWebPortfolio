@@ -193,18 +193,23 @@ a {
 }
 
 .navbar ul {
-  list-style: none;
   display: flex;
-  gap: 20px;
-  margin: 0; /* Elimina cualquier margen */
-  padding: 0; /* Elimina cualquier relleno */
+  justify-content: center;
+  align-items: center;
+  gap: 0; /* Sin espacio extra entre elementos */
+  width: 420px; /* Ajusta según el ancho total deseado */
+  margin: 0 auto; /* Centra el ul dentro de la navbar */
+  padding: 0;
 }
 
 .navbar li {
-  position: relative;
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar a {
+  width: 100%;
   text-decoration: none;
   color: rgba(60, 60, 60); /* Texto gris oscuro translúcido */
   font-size: 18px;
