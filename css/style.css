@@ -396,6 +396,76 @@ a {
 
 }
 
+/* Correcciones responsive específicas para la portada en móviles */
+@media screen and (max-width: 768px) {
+  /* Ocultar columnas verticales de logos para evitar solapamientos */
+  .logos-container,
+  .logos-container.left,
+  .logos-container.right {
+    display: none !important;
+  }
+
+  /* Hacer que la portada fluya en vertical sin posicionamientos absolutos conflictivos */
+  #portada {
+    height: auto;            /* Deja crecer según contenido */
+    padding-top: 120px;      /* Espacio bajo la navbar fija */
+    padding-bottom: 60px;    /* Espacio para el indicador de scroll */
+  }
+
+  .container {
+    min-height: unset;       /* Evita forzar alto completo si no cabe */
+    display: flex;           /* Centrar contenido en columna */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .image-container {
+    position: static;        /* Quita posicionamiento absoluto/relativo */
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 0 auto 16px auto;
+  }
+
+  .image-container::before {
+    width: 170px;            /* Reducir halo en móvil */
+    height: 170px;
+    filter: blur(16px);
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    border-width: 3px;
+  }
+
+  .profile-info {
+    position: static;        /* Entrar al flujo normal */
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    max-width: 520px;        /* Mantener legibilidad */
+    margin: 0 auto;          /* Centrado */
+    text-align: center;
+  }
+
+  .profile-info h1 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  .profile-info p {
+    font-size: 14px;
+  }
+
+  .scroll-indicator {
+    bottom: 10px;
+  }
+}
+
 @keyframes glowPulse {
   0% {
     transform: translate(-50%, -50%) scale(1);
