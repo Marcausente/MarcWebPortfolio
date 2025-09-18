@@ -504,27 +504,32 @@ a {
     display: none !important;
   }
 
-  /* Hacer que la portada fluya en vertical sin posicionamientos absolutos conflictivos */
+  /* Centrado fiable de la portada en móvil */
   #portada {
-    height: auto;            /* Deja crecer según contenido */
-    padding-top: 34px;       /* Compensación navbar fija (~80-90px) */
-    padding-bottom: 60px;    /* Espacio inferior */
-  }
-
-  .container {
-    min-height: calc(100vh - 150px); /* Ocupa casi toda la pantalla, restando navbar+aire */
-    display: flex;            /* Centrar contenido en columna */
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;  /* Centrado vertical de la portada */
-    gap: 12px;
+    justify-content: center;
+    min-height: 100svh;
+    padding-top: 70px;       /* compensa navbar fija */
+    padding-bottom: 40px;
+  }
+
+  #portada .container {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
   }
 
   .image-container {
-    position: static;        /* Quita posicionamiento absoluto/relativo */
-    top: auto;
-    left: auto;
-    transform: none;
+    position: static !important;        /* Quita posicionamiento absoluto/relativo */
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
     margin: 0 auto 16px auto;
   }
 
@@ -541,10 +546,10 @@ a {
   }
 
   .profile-info {
-    position: static;        /* Entrar al flujo normal */
-    top: auto;
-    left: auto;
-    transform: none;
+    position: static !important;        /* Entrar al flujo normal */
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
     width: 100%;
     max-width: 520px;        /* Mantener legibilidad */
     margin: 0 auto;          /* Centrado */
