@@ -226,6 +226,62 @@ a {
   box-shadow: none;
 }
 
+/* Botón hamburguesa */
+.menu-toggle {
+  display: none;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.9);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle .bar,
+.menu-toggle .bar::before,
+.menu-toggle .bar::after {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #333;
+  border-radius: 2px;
+  position: relative;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  margin: 0 auto;
+}
+
+.menu-toggle .bar::before {
+  position: absolute;
+  top: -6px;
+  left: 0;
+}
+
+.menu-toggle .bar::after {
+  position: absolute;
+  top: 6px;
+  left: 0;
+}
+
+.menu-toggle.active .bar {
+  transform: rotate(45deg);
+}
+
+.menu-toggle.active .bar::before {
+  transform: rotate(90deg);
+  top: 0;
+}
+
+.menu-toggle.active .bar::after {
+  opacity: 0;
+}
+
 .container {
   min-height: 100vh;
   position: relative;
@@ -364,6 +420,49 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  /* Mostrar botón hamburguesa y ocultar menú por defecto */
+  .menu-toggle {
+    display: inline-flex;
+    position: absolute;
+    right: 12px;              /* Separación del borde derecho */
+    top: 10px;                /* Separación del borde superior */
+    transform: none;          /* Quita centrado vertical previo */
+  }
+
+  .navbar {
+    justify-content: center;
+    padding: 10px 12px;
+  }
+
+  .navbar ul {
+    position: absolute;
+    top: 56px;                 /* Debajo de la navbar */
+    right: 12px;
+    left: 12px;
+    display: none;             /* Oculto por defecto */
+    flex-direction: column;
+    gap: 0;
+    background: rgba(255,255,255,0.98);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    padding: 8px;
+    width: auto;
+  }
+
+  .navbar ul.open {
+    display: flex;
+  }
+
+  .navbar li {
+    justify-content: stretch;
+  }
+
+  .navbar a {
+    padding: 12px 10px;
+    font-size: 16px;
+  }
+
   body {
     font-family: Arial, sans-serif; /* Cambiar la fuente a Arial en dispositivos móviles */
     font-size: 12px; /* Fuente más pequeña para móviles */
@@ -408,7 +507,7 @@ a {
   /* Hacer que la portada fluya en vertical sin posicionamientos absolutos conflictivos */
   #portada {
     height: auto;            /* Deja crecer según contenido */
-    padding-top: 90px;       /* Compensación navbar fija (~80-90px) */
+    padding-top: 34px;       /* Compensación navbar fija (~80-90px) */
     padding-bottom: 60px;    /* Espacio inferior */
   }
 
@@ -1503,14 +1602,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Estilos existentes para la sección Sobre Mí que ya no se necesitan */
-.personal-info {
-  /* Estos estilos serán reemplazados por los nuevos */
-}
-
-.tech-stack {
-  /* Estos estilos serán reemplazados por los nuevos */
-}
+/* Estilos existentes para la sección Sobre Mí que ya no se necesitan (reglas eliminadas) */
 
 /* Ajustes para la timeline */
 .timeline {

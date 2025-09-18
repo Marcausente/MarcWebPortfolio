@@ -1,4 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Toggle menú hamburguesa en móvil
+  const menuToggle = document.querySelector('.menu-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+  if (menuToggle && primaryNav) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = primaryNav.classList.toggle('open');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Cerrar al hacer click en un enlace
+    primaryNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        primaryNav.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
   const logosContainers = document.querySelectorAll(".logos-container .logos");
 
   logosContainers.forEach(container => {
