@@ -408,16 +408,16 @@ a {
   /* Hacer que la portada fluya en vertical sin posicionamientos absolutos conflictivos */
   #portada {
     height: auto;            /* Deja crecer según contenido */
-    padding-top: 120px;      /* Espacio bajo la navbar fija */
-    padding-bottom: 60px;    /* Espacio para el indicador de scroll */
+    padding-top: 90px;       /* Compensación navbar fija (~80-90px) */
+    padding-bottom: 60px;    /* Espacio inferior */
   }
 
   .container {
-    min-height: unset;       /* Evita forzar alto completo si no cabe */
-    display: flex;           /* Centrar contenido en columna */
+    min-height: calc(100vh - 150px); /* Ocupa casi toda la pantalla, restando navbar+aire */
+    display: flex;            /* Centrar contenido en columna */
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;  /* Centrado vertical de la portada */
     gap: 12px;
   }
 
