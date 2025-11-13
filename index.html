@@ -8,18 +8,28 @@
   <link rel="icon" type="image/png" href="img/cara.png">
   <link rel="shortcut icon" type="image/png" href="img/cara.png">
 </head>
-<nav class="navbar">
-  <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav">
-    <span class="bar"></span>
-  </button>
-  <ul id="primary-nav">
-    <li><a href="#" id="inicio-link">Inicio</a></li>
-    <li><a href="#about">Sobre mí</a></li>
-    <li><a href="#mis-proyectos">Proyectos</a></li>
-  </ul>
-</nav>
-
+ 
 <body>
+<header class="header">
+  <nav class="nav">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="img/cara.png" alt="Logo" class="logo-img">
+        <span class="logo-text">Marc</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" id="inicio-link" class="nav-link">Inicio</a></li>
+        <li><a href="#about" class="nav-link">Sobre mí</a></li>
+        <li><a href="#mis-proyectos" class="nav-link">Proyectos</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
 
 <div class="background-animation">
   <div class="gradient-bg"></div>

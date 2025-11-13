@@ -1,4 +1,68 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Nuevo header/nav
+  const header = document.querySelector('.header');
+  const navContainer = document.querySelector('.nav-container');
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinksContainer = document.querySelector('.nav-links');
+
+  // Ajustar --header-height dinámicamente
+  function setHeaderHeightVar() {
+    if (header) {
+      const height = header.offsetHeight;
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+    }
+  }
+  setHeaderHeightVar();
+  window.addEventListener('resize', setHeaderHeightVar);
+
+  // Toggle menú móvil
+  if (navToggle && navLinksContainer) {
+    navToggle.addEventListener('click', function() {
+      const isActive = navLinksContainer.classList.toggle('active');
+      navToggle.classList.toggle('active', isActive);
+      navToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      if (isActive) {
+        navLinksContainer.style.top = getComputedStyle(document.documentElement).getPropertyValue('--header-height') || (header ? header.offsetHeight + 'px' : '80px');
+      }
+    });
+    // Cerrar al pulsar enlace
+    navLinksContainer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinksContainer.classList.remove('active');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Efecto ocultar/mostrar header en scroll
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', function() {
+    const currentScrollY = window.scrollY;
+    if (navContainer) {
+      if (currentScrollY > 100) {
+        navContainer.style.background = 'rgba(255, 255, 255, 0.6)';
+        navContainer.style.backdropFilter = 'blur(16px) saturate(180%)';
+        navContainer.style.webkitBackdropFilter = 'blur(16px) saturate(180%)';
+        navContainer.style.border = '1px solid rgba(255, 255, 255, 0.6)';
+        navContainer.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.12)';
+      } else {
+        navContainer.style.background = 'rgba(255, 255, 255, 0.6)';
+        navContainer.style.backdropFilter = 'blur(16px) saturate(180%)';
+        navContainer.style.webkitBackdropFilter = 'blur(16px) saturate(180%)';
+        navContainer.style.border = '1px solid rgba(255, 255, 255, 0.6)';
+        navContainer.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.12)';
+      }
+    }
+    if (header) {
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+    }
+    lastScrollY = currentScrollY;
+  });
   // Toggle menú hamburguesa en móvil
   const menuToggle = document.querySelector('.menu-toggle');
   const primaryNav = document.getElementById('primary-nav');
@@ -187,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const sectionId = section.getAttribute('id');
       
       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        document.querySelectorAll('.navbar a').forEach(link => {
+        document.querySelectorAll('.navbar a, .nav .nav-link').forEach(link => {
           link.classList.remove('active');
           if (link.getAttribute('href') === `#${sectionId}`) {
             link.classList.add('active');
@@ -311,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Manejar los enlaces de la navbar
-  document.querySelectorAll('.navbar a').forEach(anchor => {
+  document.querySelectorAll('.navbar a, .nav .nav-link').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
       const targetId = this.getAttribute('href');
@@ -458,7 +522,7 @@ function smoothScroll(target, duration) {
 
 // Asegurarse de que el scroll sea suave incluso en Safari
 if (!window.CSS || !CSS.supports('scroll-behavior', 'smooth')) {
-    document.querySelectorAll('.navbar a').forEach(anchor => {
+    document.querySelectorAll('.navbar a, .nav .nav-link').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
