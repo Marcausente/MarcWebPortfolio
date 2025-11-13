@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   setHeaderHeightVar();
+  window.addEventListener('load', setHeaderHeightVar);
   window.addEventListener('resize', setHeaderHeightVar);
 
   // Toggle menú móvil
@@ -32,6 +33,22 @@ document.addEventListener("DOMContentLoaded", function () {
         navToggle.classList.remove('active');
         navToggle.setAttribute('aria-expanded', 'false');
       });
+    });
+    // Cerrar al hacer click fuera
+    document.addEventListener('click', (e) => {
+      if (!navLinksContainer.contains(e.target) && !navToggle.contains(e.target)) {
+        navLinksContainer.classList.remove('active');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        navLinksContainer.classList.remove('active');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 
@@ -62,6 +79,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     lastScrollY = currentScrollY;
+    // Progreso de scroll
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    const progressEl = document.querySelector('.scroll-progress');
+    if (progressEl) {
+      progressEl.style.width = progress + '%';
+    }
   });
   // Toggle menú hamburguesa en móvil
   const menuToggle = document.querySelector('.menu-toggle');
@@ -320,6 +346,16 @@ document.addEventListener("DOMContentLoaded", function () {
     projectObserver.observe(card);
   });
 
+  // Lazy-loading para imágenes no críticas
+  document.querySelectorAll('.project-image img, .logos-row img, .logos img').forEach(img => {
+    if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
+    if (!img.hasAttribute('decoding')) {
+      img.setAttribute('decoding', 'async');
+    }
+  });
+
   // Efecto hover mejorado para las tarjetas de proyecto
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', (e) => {
@@ -340,12 +376,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Obtener offset del header desde CSS variable
+  function getHeaderOffset() {
+    const varValue = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
+    const parsed = parseInt(varValue);
+    if (!isNaN(parsed) && parsed > 0) return parsed;
+    return header ? header.offsetHeight : 96;
+  }
+
   // Función mejorada para scroll suave
   function scrollToSection(targetId) {
     const targetElement = document.querySelector(targetId);
     if (!targetElement) return;
     
-    const headerOffset = 80;
+    const headerOffset = getHeaderOffset();
     const elementPosition = targetElement.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
     
@@ -390,7 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Scroll a una sección específica
         const targetSection = document.querySelector(targetId);
         if (targetSection) {
-          const headerOffset = 80;
+          const headerOffset = getHeaderOffset();
           const elementPosition = targetSection.offsetTop - headerOffset;
           
           window.scrollTo({
@@ -532,7 +576,7 @@ if (!window.CSS || !CSS.supports('scroll-behavior', 'smooth')) {
             } else if (targetId.startsWith('#')) {
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
-                    const headerOffset = 80;
+                    const headerOffset = getHeaderOffset();
                     const elementPosition = targetSection.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                     smoothScroll(offsetPosition, 1000);
