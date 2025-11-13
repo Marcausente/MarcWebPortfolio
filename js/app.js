@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     if (header) {
+      header.classList.toggle('scrolled', currentScrollY > 100);
       if (currentScrollY > lastScrollY && currentScrollY > 200) {
         header.style.transform = 'translateY(-100%)';
       } else {
