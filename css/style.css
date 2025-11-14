@@ -893,6 +893,10 @@ a {
     linear-gradient(90deg, transparent 24px, rgba(0, 0, 0, 0.05) 25px, transparent 26px);
   background-size: 25px 25px;
 }
+/* Reducir espacio inferior solo en contacto para acercar la franja de logos */
+#contacto {
+  padding-bottom: 30px;
+}
 
 .about-container, .projects-container, .contact-container {
   background: rgba(255, 255, 255, 0.97);
@@ -1348,8 +1352,8 @@ a {
 /* Nuevo estilo para los logos horizontales */
 .logos-container-horizontal {
   width: 100%;
-  padding: 40px 0;
-  margin: 40px 0 0 0;
+  padding: 24px 0;
+  margin: 12px 0 0 0;
   overflow: hidden;
   position: relative;
   background: rgba(255, 255, 255, 0.9);
@@ -1894,11 +1898,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo-img {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 6px;
   object-fit: cover;
-  border: 2px solid #f44336;
+  border: none; /* quitar recuadro */
+  box-shadow: none;
 }
 
 .logo-text {
@@ -1934,16 +1939,18 @@ h1, h2, h3, h4, h5, h6 {
   color: #2c3e50;
   font-weight: 600;
   font-size: 20px;
-  transition: all 0.3s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
   position: relative;
   padding: 14px 18px;
   border-radius: 9999px;
+  will-change: transform;
 }
 
 .nav-link:hover {
   color: #1f2937;
   background: transparent; /* más minimalista */
   box-shadow: none;
+  transform: translateY(-1px);
 }
 
 .nav-link::after {
@@ -1956,12 +1963,14 @@ h1, h2, h3, h4, h5, h6 {
   background: #ef4444; /* rojo sólido minimalista */
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease;
   border-radius: 2px;
+  opacity: 0.75;
 }
 
 .nav-link.active::after {
   transform: scaleX(1);
+  opacity: 1;
 }
 
 .nav-link.active {
@@ -1969,6 +1978,12 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent; /* sin pill, solo subrayado */
   box-shadow: none;
   border: none;
+}
+
+/* Mostrar subrayado en hover con animación */
+.nav-link:hover::after {
+  transform: scaleX(1);
+  opacity: 0.95;
 }
 
 .nav-toggle {
