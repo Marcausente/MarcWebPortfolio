@@ -22,6 +22,7 @@
         <li><a href="#" id="inicio-link" class="nav-link">Inicio</a></li>
         <li><a href="#about" class="nav-link">Sobre mí</a></li>
         <li><a href="#mis-proyectos" class="nav-link">Proyectos</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
         <span></span>
@@ -703,6 +704,89 @@
       <img src="img/laravel-icon-1990x2048-xawylrh0.png" alt="Laravel">
       <img src="img/lua-icon-2048x2048-iud9q772.png" alt="lua">
       <img src="img/jetpack compose icon_RGB.png" alt="jetpack">
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contact-container">
+    <h2>Contacto</h2>
+    <div class="contact-grid">
+      <div class="contact-card contact-info">
+        <div class="contact-heading">
+          <img src="img/cara.png" alt="Marc" class="contact-avatar">
+          <div>
+            <h3>Marc Fernández Messa</h3>
+            <p>Desarrollador Multiplataforma</p>
+          </div>
+        </div>
+        <ul class="contact-list">
+          <li>
+            <span class="contact-label">Email</span>
+            <a href="mailto:marcausente@gmail.com">marcausente@gmail.com</a>
+          </li>
+          <li>
+            <span class="contact-label">Teléfono</span>
+            <a href="tel:+34633401209">633401209</a>
+          </li>
+          <li>
+            <span class="contact-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/marc-fernández-1058ba332" target="_blank" rel="noopener">/marc-fernández-1058ba332</a>
+          </li>
+          <li>
+            <span class="contact-label">GitHub</span>
+            <a href="https://github.com/marcausente" target="_blank" rel="noopener">@marcausente</a>
+          </li>
+        </ul>
+        <div class="contact-social">
+          <a href="mailto:marcausente@gmail.com" class="social-pill">
+            <img src="img/Gmail_icon_(2020).svg.png" alt="Email"> Email
+          </a>
+          <a href="https://www.linkedin.com/in/marc-fernández-1058ba332" target="_blank" class="social-pill">
+            <img src="img/174857.png" alt="LinkedIn"> LinkedIn
+          </a>
+          <a href="https://github.com/marcausente" target="_blank" class="social-pill">
+            <img src="img/Octicons-mark-github.svg" alt="GitHub"> GitHub
+          </a>
+        </div>
+      </div>
+      <div class="contact-card contact-form">
+        <h3>Envíame un mensaje</h3>
+        <form action="https://formsubmit.co/marcausente@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde el portfolio">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="¡Gracias por tu mensaje! Te responderé lo antes posible.">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="Nombre" type="text" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-field">
+              <label for="apellido">Apellido</label>
+              <input id="apellido" name="Apellido" type="text" placeholder="Tu apellido" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="Email" type="email" placeholder="tunombre@email.com" required>
+            </div>
+            <div class="form-field">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="Telefono" type="tel" placeholder="633401209" pattern="[0-9+\\s-]{6,}" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="Mensaje" rows="5" placeholder="¿En qué puedo ayudarte?" required></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Enviar mensaje</button>
+            <p class="form-note">Respuesta habitual en menos de 24h</p>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </section>
