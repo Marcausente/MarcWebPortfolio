@@ -931,7 +931,7 @@ a {
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 24px;
+  gap: 32px;
 }
 
 .contact-card {
@@ -939,14 +939,15 @@ a {
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  padding: 24px;
+  padding: 28px;
+  line-height: 1.6;
 }
 
 .contact-heading {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .contact-heading h3 {
@@ -956,7 +957,7 @@ a {
 }
 
 .contact-heading p {
-  margin: 0;
+  margin: 2px 0 0 0;
   color: #666;
   font-size: 0.95rem;
 }
@@ -972,16 +973,17 @@ a {
 .contact-list {
   list-style: none;
   padding: 0;
-  margin: 8px 0 16px 0;
+  margin: 10px 0 20px 0;
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 .contact-list li {
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: 120px 1fr;
   align-items: center;
   gap: 8px;
+  padding: 6px 0;
 }
 
 .contact-label {
@@ -993,20 +995,21 @@ a {
   color: #2c3e50;
   text-decoration: none;
   border-bottom: 1px dashed rgba(0,0,0,0.15);
+  padding-bottom: 2px;
 }
 
 .contact-social {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 .social-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border-radius: 9999px;
   background: rgba(0,0,0,0.04);
   text-decoration: none;
@@ -1018,35 +1021,45 @@ a {
 
 .contact-form h3 {
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 18px;
+}
+
+/* Más separación entre filas del formulario */
+.form-row + .form-row {
+  margin-top: 6px;
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
 .form-field label {
   color: #555;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .form-field input,
 .form-field textarea {
   border: 1px solid rgba(0,0,0,0.12);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   font-size: 1rem;
   background: #fff;
   outline: none;
   transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.form-row + .form-field {
+  margin-top: 16px; /* Más espacio antes de Mensaje */
 }
 
 .form-field input:focus,
@@ -1059,14 +1072,14 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 12px;
+  margin-top: 16px;
   flex-wrap: wrap;
 }
 
 .btn-primary {
   border: none;
   cursor: pointer;
-  padding: 12px 20px;
+  padding: 14px 22px;
   border-radius: 9999px;
   color: #fff;
   font-weight: 600;
@@ -1080,12 +1093,13 @@ a {
 .form-note {
   color: #777;
   font-size: 0.9rem;
-  margin: 0;
+  margin: 4px 0 0 0;
 }
 
 @media screen and (max-width: 900px) {
   .contact-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; gap: 14px; }
+  .contact-card { padding: 24px; }
 }
 
 /* Efecto de anillo alrededor de la foto */
