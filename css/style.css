@@ -2200,11 +2200,19 @@ h6 {
     flex-direction: column;
     padding: calc(env(safe-area-inset-top, 0px) + 12px) 18px 18px 18px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    gap: 8px; /* más separación entre items */
+    gap: 12px; /* más separación entre items */
     z-index: 1100;
     animation: mobileMenuIn 0.25s ease;
   }
-  .nav-links.active li + li { border-top: none; }
+  .nav-links.active li + li { border-top: none; position: relative; }
+  .nav-links.active li + li::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(244,67,54,0.14), rgba(0,0,0,0.08), rgba(244,67,54,0.14));
+    border-radius: 1px;
+    margin: 2px 0 0 0;
+  }
   .nav-links .nav-link {
     padding: 16px 12px;  /* tap target más cómodo */
     font-size: 18px;
