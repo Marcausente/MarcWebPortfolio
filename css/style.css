@@ -410,7 +410,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 100%;
+  /* height: 100%; Removed to allow content to determine height */
   animation: scroll-up 15s linear infinite;
 }
 
@@ -628,8 +628,8 @@ a {
   }
 
   100% {
-    transform: translateY(-100%);
-    /* Mueve todo el contenedor hacia arriba */
+    transform: translateY(-50%);
+    /* Mueve solo la mitad para el loop infinito */
   }
 }
 
@@ -691,18 +691,18 @@ a {
   width: 48px;
   height: 48px;
   border-radius: 9999px;
-  background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   backdrop-filter: blur(10px) saturate(160%);
   -webkit-backdrop-filter: blur(10px) saturate(160%);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
 .scroll-indicator a:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
-  background: rgba(255,255,255,0.78);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .scroll-indicator a::after {
@@ -746,9 +746,17 @@ a {
 }
 
 @keyframes ringPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.25); }
-  70%  { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.25);
+  }
+
+  70% {
+    box-shadow: 0 0 0 14px rgba(239, 68, 68, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
 }
 
 #portada {
@@ -2232,26 +2240,35 @@ h6 {
     flex-direction: column;
     padding: calc(env(safe-area-inset-top, 0px) + 12px) 18px 18px 18px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    gap: 12px; /* más separación entre items */
+    gap: 12px;
+    /* más separación entre items */
     z-index: 1100;
     animation: mobileMenuIn 0.25s ease;
   }
-  .nav-links.active li + li { border-top: none; position: relative; }
-  .nav-links.active li + li::before {
+
+  .nav-links.active li+li {
+    border-top: none;
+    position: relative;
+  }
+
+  .nav-links.active li+li::before {
     content: '';
     display: block;
     height: 1px;
-    background: linear-gradient(90deg, rgba(244,67,54,0.14), rgba(0,0,0,0.08), rgba(244,67,54,0.14));
+    background: linear-gradient(90deg, rgba(244, 67, 54, 0.14), rgba(0, 0, 0, 0.08), rgba(244, 67, 54, 0.14));
     border-radius: 1px;
     margin: 2px 0 0 0;
   }
+
   .nav-links .nav-link {
-    padding: 16px 12px;  /* tap target más cómodo */
+    padding: 16px 12px;
+    /* tap target más cómodo */
     font-size: 18px;
     border-radius: 12px;
   }
+
   .nav-links .nav-link:active {
-    background: rgba(0,0,0,0.04);
+    background: rgba(0, 0, 0, 0.04);
   }
 
   .nav-toggle.active span:nth-child(1) {
@@ -2300,7 +2317,7 @@ section {
 .nav-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   opacity: 0;
@@ -2308,20 +2325,43 @@ section {
   transition: opacity 0.2s ease;
   z-index: 1000;
 }
-.nav-backdrop.active { opacity: 1; pointer-events: auto; }
+
+.nav-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 /* Bloquear scroll cuando el menú está abierto */
-body.nav-open { overflow: hidden; touch-action: none; }
+body.nav-open {
+  overflow: hidden;
+  touch-action: none;
+}
 
 @keyframes mobileMenuIn {
-  from { transform: translateY(-8px); opacity: 0; }
-  to   { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Evitar clipping del menú por transform/overflow del header cuando está abierto */
-body.nav-open .header { transform: translateY(0) !important; }
-body.nav-open .nav-container { overflow: visible; }
-body.nav-open .nav-links.active { border-radius: 16px; }
+body.nav-open .header {
+  transform: translateY(0) !important;
+}
+
+body.nav-open .nav-container {
+  overflow: visible;
+}
+
+body.nav-open .nav-links.active {
+  border-radius: 16px;
+}
+
 /* Estado al hacer scroll: reforzar efecto cristal y sombra */
 .header.scrolled .nav-container {
   background: rgba(255, 255, 255, 0.82);
