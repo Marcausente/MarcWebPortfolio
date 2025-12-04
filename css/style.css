@@ -676,22 +676,48 @@ a {
 
 .scroll-indicator {
   position: absolute;
-  bottom: 20px;
+  bottom: 22px;
   left: 50%;
   transform: translateX(-50%);
-  animation: bounce 2s infinite;
   z-index: 100;
-  background: none;
-  /* Eliminado el fondo */
-  padding: 0;
-  /* Eliminado el padding */
-  box-shadow: none;
-  /* Eliminada la sombra */
+  animation: bounce 2s infinite;
 }
 
-.scroll-indicator::after {
+.scroll-indicator a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0.06);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.scroll-indicator a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.78);
+}
+
+.scroll-indicator a::after {
   content: '';
-  /* Eliminado el texto 'Scroll para más' */
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.25);
+  animation: ringPulse 2.2s ease-out infinite;
+}
+
+.scroll-indicator .arrow-down {
+  width: 22px;
+  height: 22px;
+  display: block;
 }
 
 .scroll-indicator a {
@@ -717,6 +743,12 @@ a {
   60% {
     transform: translateY(-10px);
   }
+}
+
+@keyframes ringPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.25); }
+  70%  { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }
 
 #portada {
