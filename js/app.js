@@ -301,17 +301,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Mejorar el observer para las secciones
-  const sections = document.querySelectorAll('#about, #mis-proyectos');
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         // Cuando la sección es visible
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
-      } else {
-        // Cuando la sección no es visible
-        entry.target.style.opacity = '0';
-        entry.target.style.transform = 'translateY(20px)';
+        // Dejar de observar una vez que ya apareció
+        sectionObserver.unobserve(entry.target);
       }
     });
   }, {
@@ -332,9 +329,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
-      } else {
-        entry.target.style.opacity = '0';
-        entry.target.style.transform = 'translateY(50px)';
+        // Dejar de observar una vez que ya apareció para evitar problemas al hacer scroll hacia arriba
+        projectObserver.unobserve(entry.target);
       }
     });
   }, {
