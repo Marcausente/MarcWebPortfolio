@@ -316,6 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Aplicar el observer a las secciones
+  const sections = document.querySelectorAll('section');
   sections.forEach(section => {
     section.style.opacity = '0';
     section.style.transform = 'translateY(20px)';
