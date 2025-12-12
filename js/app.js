@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.classList.toggle('nav-open', isActive);
       if (navBackdrop) navBackdrop.classList.toggle('active', isActive);
       if (isActive) {
-        navLinksContainer.style.top = getComputedStyle(document.documentElement).getPropertyValue('--header-height') || (header ? header.offsetHeight + 'px' : '80px');
+        // Removed inline top assignment to allow CSS full-screen overlay
+        // navLinksContainer.style.top = ...
       }
     });
     // Cerrar al pulsar enlace
@@ -109,25 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
       progressEl.style.width = progress + '%';
     }
   });
-  // Toggle menú hamburguesa en móvil
-  const menuToggle = document.querySelector('.menu-toggle');
-  const primaryNav = document.getElementById('primary-nav');
-  if (menuToggle && primaryNav) {
-    menuToggle.addEventListener('click', () => {
-      const isOpen = primaryNav.classList.toggle('open');
-      menuToggle.classList.toggle('active', isOpen);
-      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    // Cerrar al hacer click en un enlace
-    primaryNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        primaryNav.classList.remove('open');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
+  // Legacy menu-toggle block removed
   const logosContainers = document.querySelectorAll(".logos-container .logos");
 
   logosContainers.forEach(container => {
