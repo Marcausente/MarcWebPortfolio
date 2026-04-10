@@ -312,7 +312,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }, {
-    threshold: 0.1
+    threshold: 0,
+    rootMargin: "0px 0px -50px 0px"
   });
 
   // Aplicar el observer a las secciones
@@ -335,7 +336,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }, {
-    threshold: 0.1
+    threshold: 0,
+    rootMargin: "0px 0px -30px 0px"
   });
 
   // Aplicar el observer a las tarjetas de proyecto
@@ -505,7 +507,7 @@ document.addEventListener("DOMContentLoaded", function () {
         skillsObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0, rootMargin: "0px 0px -100px 0px" });
 
   const aboutSection = document.getElementById('about');
   if (aboutSection) {
