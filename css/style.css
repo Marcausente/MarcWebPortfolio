@@ -207,7 +207,8 @@ h6 {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Increased z-index so it clearly sits on top of everything */
+  z-index: 1000;
+  transition: transform 0.4s ease;
 }
 
 .nav {
