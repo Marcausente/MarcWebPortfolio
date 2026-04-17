@@ -679,7 +679,15 @@ h6 {
   border-bottom: 2px solid rgba(255, 255, 255, 0.05);
   padding-bottom: 0;
   overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
 }
+
+.about-tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
 
 .tab-btn {
   background: transparent;
